@@ -16,3 +16,9 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/usuario', 'UsuarioController@index');
+$router->get('/usuario/{id}', 'UsuarioController@show');
+$router->post('/usuario-cadastro', 'UsuarioController@create');
+$router->post('/usuario-altera/{id}', 'UsuarioController@update');
+$router->delete('/usuario-deleta/{id}', 'UsuarioController@delete');
