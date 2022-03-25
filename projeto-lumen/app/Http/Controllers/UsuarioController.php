@@ -15,38 +15,54 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        $nome = $usuarios[0]->nome;
-        return view('usuario', ['usuarios' => $usuarios]);
+        return view('usuarios', ['usuarios' => $usuarios]);
     }
+
     public function show(Request $request, $id)
     {
         $usuario = Usuario::find($id);
-        return view('usuario', ['usuarios' => $usuario]);
+        if (isset($usuario))
+            return view('usuarios', ['usuario' => $usuario]);
+        else
+            return "<h1>ERRO</h1>";
     }
 
-    public function create(Request $request) {
-        $usuario = new Usuario();
-        $usuario->nome = $request->nome;
-        $usuario->email = $request->email;
-        $usuario->senha = $request->senha;
-        $usuario->save();
-        return view('cadastro', ['usuario' => $usuario]);
+
+    public function create(Request $request)
+    {
+        if (isset($request->nome)) {
+            $usuario = new Usuario();
+            $usuario->nome = $request->nome;
+            $usuario->email = $request->email;
+            $usuario->senha = $request->senha;
+            $usuario->save();
+            return "SUCESSO";
+        } else return "ERRO";
     }
 
-    public function update(Request $request, $id) {
+    public function form(Request $request)
+    {
+        return view('cadastro');
+    }
+
+    public function update(Request $request, $id)
+    {
         $usuario = Usuario::find($id);
-        $usuario->nome = $request->nome;
-        $usuario->email = $request->email;
-        $usuario->senha = $request->senha;
-        $usuario->save();
-        return view('update', ['usuario' => $usuario]);
+        if (isset($usuario)) {
+            $usuario->nome = $request->nome;
+            $usuario->email = $request->email;
+            $usuario->senha = $request->senha;
+            $usuario->save();
+            return "ALTERADO";
+        } else return "<h1>ERRO</h1>";
     }
 
     public function delete(Request $request, $id)
     {
         $usuario = Usuario::find($id);
-        $usuario->delete();
-        return "DELETADO";
+        if (isset($usuario)) {
+            $usuario->delete();
+            return "DELETADO";
+        } else return "<h1>ERRO</h1>";
     }
-
 }

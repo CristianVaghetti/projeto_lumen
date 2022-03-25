@@ -7,6 +7,6 @@
     <title>Usuarios</title>
 </head>
 <body>
-    <h1>{{$usuarios}}</h1>
+    <h1>{{$usuario->nome}}</h1>
 </body>
 </html>
