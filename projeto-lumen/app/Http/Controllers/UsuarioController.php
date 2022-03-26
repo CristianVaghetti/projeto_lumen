@@ -22,7 +22,7 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::find($id);
         if (isset($usuario))
-            return view('usuarios', ['usuario' => $usuario]);
+            return view('busca', ['usuario' => $usuario]);
         else
             return "<h1>ERRO</h1>";
     }
@@ -40,9 +40,14 @@ class UsuarioController extends Controller
         } else return "ERRO";
     }
 
-    public function form(Request $request)
+    public function form()
     {
-        return view('cadastro');
+        return view('cadastro', ['metodo' => 'Cadastrar']);
+    }
+
+    public function list()
+    {
+        return view('busca');
     }
 
     public function update(Request $request, $id)

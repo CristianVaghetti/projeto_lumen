@@ -17,8 +17,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/home', 'UsuarioController@index');
-$router->get('/usuario-busca/{id}', 'UsuarioController@show');
+$router->get('/listar-todos', 'UsuarioController@index');
+$router->get('/listar/{id}', 'UsuarioController@show');
+$router->get('/listar', 'UsuarioController@list');
 $router->post('/cadastrar', 'UsuarioController@create');
 $router->get('/cadastrar', 'UsuarioController@form');
 $router->post('/alterar/{id}', 'UsuarioController@update');
