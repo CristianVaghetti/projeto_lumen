@@ -18,9 +18,12 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/listar-todos', 'UsuarioController@index');
-$router->get('/listar/{id}', 'UsuarioController@show');
-$router->get('/listar', 'UsuarioController@list');
+$router->post('/listar', 'UsuarioController@show');
 $router->post('/cadastrar', 'UsuarioController@create');
 $router->get('/cadastrar', 'UsuarioController@form');
 $router->post('/alterar/{id}', 'UsuarioController@update');
-$router->delete('/deletar/{id}', 'UsuarioController@delete');
+$router->get('/alterar/{id}', 'UsuarioController@edit');
+$router->get('/deletar/{id}', 'UsuarioController@delete');
+$router->get('/key', function() {
+    return \Illuminate\Support\Str::random(32);
+});

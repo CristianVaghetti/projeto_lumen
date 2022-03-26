@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <title>Listar</title>
@@ -27,15 +26,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($flagBusca != false && $flagBusca == 'azar')
+
+
+                                    <p class="alert alert-danger text-center">Usuário não localizado</p>
+
+
+                                    @elseif($flagBusca != false && $flagBusca != 'azar')
+                                    <tr class="alert alert-success">
+                                        <th class="col-1" scope="row">{{$flagBusca->id}}</th>
+                                        <th class="col-5">{{$flagBusca->nome}}</td>
+                                        <th class="col-4">{{$flagBusca->email}}</td>
+                                        <th class="col-2"><a class="btn btn-primary" href="/alterar/{{$flagBusca->id}}">Editar</a></td>
+                                        <th class="col-2">
+                                            <form method="GET" action="/deletar/{{$flagBusca->id}}">
+                                                <button class="btn btn-danger" type="submit">Excluir</button>
+                                            </form>
+                                            </td>
+                                    </tr>
+                                    @endif
                                     @foreach($usuarios as $usuario)
-
-
                                     <tr>
                                         <th class="col-1" scope="row">{{$usuario->id}}</th>
                                         <td class="col-5">{{$usuario->nome}}</td>
                                         <td class="col-4">{{$usuario->email}}</td>
-                                        <td class="col-1"><a class="btn btn-primary" href="">Editar</a></td>
-                                        <td class="col-1"><a class="btn btn-danger" href="">Deletar</a></td>
+                                        <td class="col-2"><a class="btn btn-primary" href="/alterar/{{$usuario->id}}">Editar</a></td>
+                                        <td class="col-2">
+                                            <form method="GET" action="/deletar/{{$usuario->id}}">
+                                                <button class="btn btn-danger" type="submit">Excluir</button>
+                                            </form>
+                                        </td>
                                     </tr>
 
 

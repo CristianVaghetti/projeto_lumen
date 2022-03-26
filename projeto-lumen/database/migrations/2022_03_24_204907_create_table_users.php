@@ -17,7 +17,7 @@ class CreateTableUsers extends Migration
             $table->id();
             $table->string('nome', 30);
             $table->string('email',30);
-            $table->string('senha',8);
+            $table->string('senha',256);
             $table->timestamps();
         });
     }
@@ -32,3 +32,4 @@ class CreateTableUsers extends Migration
         Schema::dropIfExists('usuarios');
     }
 }
+
